@@ -1,7 +1,10 @@
+from __future__ import annotations
 """Public schemas exchanged between CLI, agents, and evaluators."""
 
-from enum import StrEnum
-from typing import Any
+from enum import Enum
+
+class StrEnum(str, Enum): pass
+from typing import Any, Optional
 
 from pydantic import BaseModel, Field
 
@@ -28,7 +31,7 @@ class AgentResult(BaseModel):
 
 class SourceDocument(BaseModel):
     title: str
-    url: str | None = None
+    url: Optional[str] = None
     snippet: str
     metadata: dict[str, Any] = Field(default_factory=dict)
 
